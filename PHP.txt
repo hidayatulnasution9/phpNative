@@ -1,0 +1,2488 @@
+PHP
+
+- di buat oleh Rasmus Lerdorf tahun 1994 
+
+- Client-side 
+- Server-side scripting
+- Apache adalah web server
+
+Sintaks dasar PHP
+- Comment
+ Keywordnya //, /*  */
+
+- Standart Ouput 
+perintah yang digunakan untuk mencetak di layar
+keyword: echo, print(untuk mencetak tulisan, isi variabel), print_r(untuk mencetak isi array, untuk debug), var_dump(untuk melihat isi variabel, untuk debug)
+contohnya:
+- echo "test";
+- print "test1";
+- print_r("test");
+- var_dump("test");
+
+- Penulisan sintaks PHP 
+1. PHP di dalam HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1><?php echo " Sintaks PHP" ?> didalam HTML</h1>
+    <p><?php echo "Paragraf PHP" ?></p>
+</body>
+</html>
+
+2. HTML di dalam PHP
+<?php echo "<h1>Sintaks HTML di dalam PHP</h1>" ?>
+
+- variabel dan tipe data
+1. Variabel(digunakan untuk menampung sebuah nilai)
+- tidak boleh diawali dengan angka, tapi boleh mengandung angka
+keyword = $
+$nama = "PHP";
+<h1>Aturan Penulisan Sintaks <?php echo $nama ?></h1>
+
+- Menggunakan Konsep Interpolasi pada kutip 2 ""
+$nama = "PHP";
+echo "Penulisan Sintaks $nama";
+
+- Tidak Menggunakan Konsep Interpolasi
+$nama = "PHP";
+echo 'Penulisan Sintaks $nama';
+
+- Operator
+1. Aritmatika
+keyword = + - / * %
+$x = 10;
+$y = 200;
+echo $x + $y;
+
+2. Penggabung String / Concatenation / concat
+keyword = .
+$nama_depan = "hidayat";
+$nama_belakang = "nasution";
+echo $nama_depan . " " . $nama_belakang";
+
+3. Assignment(Penugasan)
+keyword = +=, -=, =, *=, /=, %=, .=
+$x = 2;
+$x += 7;
+echo $x;
+
+$nama = "hidayat";
+$nama .= " ";
+$nama .= "Nasution";
+echo $nama;
+
+4. Perbandingan(hanya mengecek nilai bukan tipe data)
+keyword = <, >, ==, <=, >=, !=
+var_dump(1 > 5);
+var_dump(1 == "1");
+
+5. Identitas
+keyword = !==, ===
+var_dump(1 === "1");
+
+6. Logika
+keyword = &&(and), ||(or), !(not)
+$x = 10;
+var_dump($x < 20 && $x % 2 == 1);
+
+$y = 30;
+var_dump($y < 20 || $y % 2 == 0);
+_________________________________________________________________________________________________________
+
+Control Flow(Struktur Kendali)
+adalah bagaimana alur dari program ketika dibaca interpreter PHP
+1. Pengulangan
+keyword = 
+- for 
+terdapat 3 bagian yaitu : inisialisasi(penentuan variabel awal untuk pengulangan), kondisiterminasi(untuk memberhentikan pengulangan), increment/decrement
+for($i = 0; $i < 5; $i++) {
+echo "test <br>";
+}
+
+- while 
+terdapat 3 bagian yaitu : inisialisasi(penentuan variabel awal untuk pengulangan), Kondisiterminasi(untuk memberhentikan pengulangan), increment/decrement
+$i = 0;
+while($i < 5) {
+echo "test2 <br>";
+$i++;
+}
+
+- do.. while 
+$i = 0;
+do {
+echo "test3 <br>";
+$i++;
+}
+while($i < 5);
+
+- foreach : pengulangan khusus array
+
+2. Pengkondisian
+keyword = 
+- if.. else
+$x = 20;
+if($x < 10){
+echo "benar";
+}
+else {
+echo "salah";
+}
+
+- if.. else if.. else
+$x = 20;
+if ($x < 20){
+echo "benar";
+}
+else if ($x == 20) {
+echo "bingo";
+}
+else {
+echo "salah";
+}
+
+- ternary
+- switch
+___________________________________________________________________________________
+Function
+1. Built-in function (https://www.php.net/manual/en/funcref.php)
+- time/date
+	- time ()
+	- date () => https://www.php.net/manual/en/function.date
+	- mktime ()
+	- strtotime ()
+
+- String
+	- strlen() => untuk menghitung panjang sebuah string
+	- strcamp() => string compire(untuk membandingkan 2 buah string)
+	- explode() => untuk memecah sebuah string menjadi array
+	- htmlspecialchars
+
+- Utility(fungsi bantuan)
+	- var_dump()
+	- isset() 
+	- empty()
+	- die()
+	- sleep()
+parameter adalah nilai yang ada di dalam kurung
+
+2. user-defined function
+- fungsinya harus didefinisikan terlebih dahulu
+- panggil
+
+<?php 
+function salam($waktu = "Datang", $nama = "Admin") {
+return "Selamat $waktu, $nama";
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1><?= salam("Malam")?></h1>
+</body>
+</html>
+___________________________________________________________________________
+
+Array (variabel yang dapat memiliki banyak nilai)
+array adalah pasangan antara key dan value, key-nya adalah index, yang dimulai dari 0
+- element = nilai yang ada di dalam array
+- element pada array boleh memiliki tipe data yang berbeda
+- membuat array
+1.  cara lama
+$hari = array("Senin","Selasa","Rabu");
+
+2. cara baru
+$bulan = ["Januari","Februari","Maret];
+$arr1 = [123, "Mei", false];
+
+- menampilkan array
+keyword = var_dump / print_r
+var_dump($hari);
+print_r($bulan);
+
+- menampilkan 1 element array
+echo $arr1[1];
+echo $hari[0];
+
+- menambahkan element baru pada array
+var_dump($hari);
+$hari[] = "Minggu";
+$hari[] = "Sabtu";
+var_dump($hari);
+
+- Penggulangan Pada Array menggunakan for / foreac
+<?php 
+$arr1 = [2,4,1,6,46,7,8,9];
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+	.kotak {
+		widht: 50px;
+		height: 50px;
+		background-color: aqua;
+		text-align: center;
+		line-height: 50px;
+		margin: 3px;
+		float: left;
+		}
+	.clear {clear:both;}
+	</style>
+</head>
+<body>
+    <?php for($i=0; $i < $arr1; $i++) {?>
+	<div class="kotak"><?= $arr1[$i];?></div>
+	<?php } ?>
+
+	<div class="clear"></div>
+
+	<?php foreach($arr1 as $ar) : ?>
+	<div class="kotak"><?= $ar; ?></div>
+	<?php endforeach; ?>
+</body>
+</html>
+
+- array numerik adalah array yang indeks nya angka
+- array assosiatif adalah indeks nya adalah string
+- Array Multidimensi
+<?php 
+$numbers = [
+	[1,2,3],
+	[4,5,6],
+	[7,8,9]];
+echo $numbers[1][2];
+echo $numbers[2][1];
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <?php foreach($numbers as $number): ?>
+	<?php foreach($number as $num) : ?>
+	<div><?= $num;?>s </div>
+	<?php endforeach; ?>
+	<?php endforeach; ?>
+</body>
+</html>
+___________________________________________________________________________________________________
+
+Associative array
+- key-nya adalah string yang di definisikan sendiri
+
+- contoh array numerik
+<?php 
+$mahasiswa = [
+    ["Hidayatul", "04233108", "Sistem Informasi","Hidayatul@gmail.com"],
+    ["Arif","42314325","Teknik Sipil", "Arif@gmail.com",],
+    ["Didik", "66452", "Teknik Informatika","Didik@gmail.com"]
+    ]
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <?php foreach($mahasiswa as $mhs) : ?>
+        <ul>
+            <li>Nama : <?= $mhs[0]; ?></li>
+            <li>NIM : <?= $mhs[1]; ?></li>
+            <li>Jurusan : <?= $mhs[2]; ?></li>
+            <li>Email : <?= $mhs[3]; ?></li>
+        </ul>
+        <?php endforeach; ?>
+</body>
+</html>
+
+- contoh array associative
+// penggunaan array multidimensi, array numerik, dan array associative
+<?php 
+$mahasiswa = [
+	[
+	"nama" => "hidayatul",
+	"nim" => "042330108",
+	"jurusan => "sistem informasi",
+	"email" => "hidayatul@gmail.com",
+	"foto" => "1.png"
+	],
+	[
+	"nama" => "arif",
+	"nim" => "432133",
+	"jurusan" => "teknik sipil",
+	"email" => "teknik sipil",
+	"foto" => "2.png"
+	],
+	[
+	"nama" => "zorro",
+	"nim" => "341432",
+	"jurusan" => "teknik informatik",
+	"email" => "zorro@gmail.com",
+	"foto" => "1.png"
+	]
+];
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Daftar Mahasiswa</h1>
+
+	<?php foreach($mahasiswa as $mhs): ?>
+	<ul>
+	<li>
+	<img src="img/<?= $mhs["foto"]; ?>
+	</li>
+	<li>Nama : <?= $mhs["nama]; ?></li>
+	<li>NIM : <?= $mhs["nim"]; ?></li>
+	<li>Jurusan : <?= $mhs["jurusan"]; ?></li>
+	<li>Email : <?= $mhs["email"];?></li> 
+	</ul>
+
+	<?php endforeach; ?>
+</body>
+</html>
+____________________________________________________________________________________________
+ 
+ Request Method Get & Post
+
+- variable scope / Lingkup variabel
+<?php 
+$y = 50;
+
+function tampilY() {
+	global $y;
+	echo $y;
+}
+
+tampilY;
+?>
+
+- variabel Superglobal adalah variabel yang sudah ada di dalam PHP, dan termasuk array associative
+keyword :
+- $_GET
+- $_POST
+- $_REQUEST
+- $_SESSION
+- $_COOKIE
+- $_SERVER
+- $_ENV
+
+- GET
+var_dump($_GET);
+
+- function isset() adalah sebuah variabel sudah pernah di buat atau belum
+
+http://localhost/phpdasar/pertemuan7/latihan.php?age=30&nim=43242
+_______________________________________________________________________________
+ 
+ Database
+
+- DBMS(database management system)
+- Oracle
+- MYSQL
+- POSTGRESQL
+- SQL SERVER
+- MongoDB
+	- RDBMS(Relational database management system)
+	- Hierarchical DBMS
+	- Network DBMS
+	- NoSQL DBMS
+
+- Primary Key adalah sebuah data yang dapat merepresentasikan satu baris record secara unik
+
+query menghapus table = drop table mahasiswa;
+query menghapus database = drop database phpdasar;
+
+
+C:\xampp\mysql\bin>mysql -u root -p
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+5 rows in set (0.043 sec)
+
+MariaDB [(none)]> create database phpdasar;
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpdasar           |
+| phpmyadmin         |
+| test               |
++--------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [(none)]> use phpdasar;
+Database changed
+
+MariaDB [phpdasar]> create table mahasiswa (
+    -> id int primary key auto_increment,
+    -> nama varchar(100),
+    -> nim  varchar(100),
+    -> jurusan varchar(100),
+    -> email varchar(100),
+    -> gambar varchar(100)
+    -> );
+Query OK, 0 rows affected (0.030 sec)
+
+MariaDB [phpdasar]> show tables;
++--------------------+
+| Tables_in_phpdasar |
++--------------------+
+| mahasiswa          |
++--------------------+
+1 row in set (0.001 sec)
+
+MariaDB [phpdasar]> describe mahasiswa;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nama    | varchar(100) | YES  |     | NULL    |                |
+| nim     | varchar(100) | YES  |     | NULL    |                |
+| jurusan | varchar(100) | YES  |     | NULL    |                |
+| email   | varchar(100) | YES  |     | NULL    |                |
+| gambar  | varchar(100) | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+6 rows in set (0.059 sec)
+
+MariaDB [phpdasar]> insert into mahasiswa values ('', 'ucup', '03242', 'sistem informasi', 'ucup@gmail.com', 'ucup.png');
+Query OK, 1 row affected, 1 warning (0.020 sec)
+
+MariaDB [phpdasar]> select * from mahasiswa
+    -> ;
++----+------+-------+------------------+----------------+----------+
+| id | nama | nim   | jurusan          | email          | gambar   |
++----+------+-------+------------------+----------------+----------+
+|  1 | ucup | 03242 | sistem informasi | ucup@gmail.com | ucup.png |
++----+------+-------+------------------+----------------+----------+
+1 row in set (0.000 sec)
+
+MariaDB [phpdasar]> insert into mahasiswa values ('', 'rani', '13123', 'elektro', 'rani@gmail.com', 'rani.png');
+Query OK, 1 row affected, 1 warning (0.022 sec)
+
+MariaDB [phpdasar]> select nim from mahasiswa;
++-------+
+| nim   |
++-------+
+| 03242 |
+| 13123 |
++-------+
+2 rows in set (0.000 sec)
+
+MariaDB [phpdasar]> select jurusan, email, gambar from mahasiswa;
++------------------+----------------+----------+
+| jurusan          | email          | gambar   |
++------------------+----------------+----------+
+| sistem informasi | ucup@gmail.com | ucup.png |
+| elektro          | rani@gmail.com | rani.png |
++------------------+----------------+----------+
+2 rows in set (0.000 sec)
+
+MariaDB [phpdasar]> select * from mahasiswa where nim = '13123';
++----+------+-------+---------+----------------+----------+
+| id | nama | nim   | jurusan | email          | gambar   |
++----+------+-------+---------+----------------+----------+
+|  2 | rani | 13123 | elektro | rani@gmail.com | rani.png |
++----+------+-------+---------+----------------+----------+
+1 row in set (0.000 sec)
+
+MariaDB [phpdasar]> update mahasiswa set jurusan = 'teknik informatika' where id = 2;
+Query OK, 1 row affected (0.022 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [phpdasar]> select * from mahasiswa;
++----+------+-------+--------------------+----------------+----------+
+| id | nama | nim   | jurusan            | email          | gambar   |
++----+------+-------+--------------------+----------------+----------+
+|  1 | ucup | 03242 | sistem informasi   | ucup@gmail.com | ucup.png |
+|  2 | rani | 13123 | teknik informatika | rani@gmail.com | rani.png |
++----+------+-------+--------------------+----------------+----------+
+2 rows in set (0.001 sec)
+
+MariaDB [phpdasar]> delete from mahasiswa where id = 1;
+Query OK, 1 row affected (0.021 sec)
+
+MariaDB [phpdasar]> select * from mahasiswa;
++----+------+-------+--------------------+----------------+----------+
+| id | nama | nim   | jurusan            | email          | gambar   |
++----+------+-------+--------------------+----------------+----------+
+|  2 | rani | 13123 | teknik informatika | rani@gmail.com | rani.png |
++----+------+-------+--------------------+----------------+----------+
+1 row in set (0.000 sec)
+___________________________________________________________________________________
+
+PHP & MYSQL
+
+- Ekstensi MySQL
+- Ekstensi MySQLi
+- PDO (PHP Data Object)
+
+"function.php"
+<?php 
+// Koneksi Ke Database MYSQL
+$conn = mysqli_connect("localhost", "root", "", "phpdasar");
+
+function query($query) {
+    global $conn;
+    $result = mysqli_query($conn, $query);
+    $rows = [];
+    while( $row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+    return $rows;
+} 
+
+?>
+
+"index.php"
+<?php
+require 'function.php';
+$mahasiswa = query("SELECT * FROM mahasiswa");
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+</head>
+<body>
+    <h1>List Mahasiswa</h1>
+
+    <table border="1" cellpadding="10" cellspacing="0" >
+
+    <tr>
+        <th>No.</th>
+        <th>Aksi</th>
+        <th>Gambar</th>
+        <th>Nama</th>
+        <th>NIM</th>
+        <th>Email</th>
+        <th>Jurusan</th>
+    </tr>
+    <?php $i = 1; ?>
+    <?php  foreach($mahasiswa as $row) : ?>
+
+    <tr>
+        <td><?= $i; ?></td>
+        <td>
+            <a href="">Edit</a> | <a href="">Delete</a>
+        </td>
+        <td><img src="img/<?= $row["gambar"]; ?>" width="60"></td>
+        <td><?= $row["nama"]?></td>
+        <td><?= $row["nim"]?></td>
+        <td><?= $row["email"]?></td>
+        <td><?= $row["jurusan"]?></td>  
+      </tr>
+      <?php $i++; ?>
+        <?php endforeach; ?>
+    </table>
+</body>
+</html>
+________________________________________________________________________________
+
+INSERT & DELETE
+-------------------------------------------------------------------------------
+"add.php"
+<?php
+require 'function.php';
+// Cek apakah tombol sumbit sudah di tekan atau belum
+if (isset ($_POST["submit"])) {
+    
+    // Cek apakah data berhasil di tambahkan atau tidak
+    if(tambah($_POST) > 0 ) {
+        echo "
+        <script>
+        alert('Add Successfully');
+        document.location.href = 'index.php';
+        </script>
+        ";
+    }
+    else  {
+        echo "
+        <script>
+        alert('Add Failed');
+        document.location.href = 'add.php';
+        </script>
+        ";
+        echo mysqli_error($conn);
+    }
+   
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add Data</h1>
+
+    <form action="" method="post">
+        <ul>
+            <li>
+                <label for="nama">Nama : </label>
+                <input type="text" name="nama" id="nama" required>
+            </li>
+            <li>
+                <label for="nim">NIM : </label>
+                <input type="number" name="nim" id="nim" required>
+            </li>
+            <li>
+                <label for="jurusan">Jurusan : </label>
+                <input type="text" name="jurusan" id="jurusan" required>
+            </li>
+            <li>
+                <label for="email">Email : </label>
+                <input type="text" name="email" id="email" required>
+            </li>
+            <li>
+                <label for="gambar">Gambar : </label>
+                <input type="text" name="gambar" id="gambar" required>
+            </li>
+            <li>
+                <button type="submit" name="submit">Add Data</button>
+            </li>
+        </ul>
+    </form>
+    <a href="index.php">Kembali</a>
+    
+    <!-- <div style=position:absolute; top:0; bottom:0; left:0; right:0; background-color:black; font-size:100px; color;red; text-align:center;>
+    HAHAHAHA ANDA TELAH DI HACK!!!!!!
+    </div> -->
+</body>
+</html>
+---------------------------------------------------------------------------------------------------
+"index.php"
+<?php
+// keyword require / include
+require 'function.php';
+$mahasiswa = query("SELECT * FROM mahasiswa");
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+</head>
+<body>
+    <h1>List Mahasiswa</h1>
+
+    <a href="add.php">Add Data</a>
+    <br><br>
+
+    <table border="1" cellpadding="10" cellspacing="0" >
+
+    <tr>
+        <th>No.</th>
+        <th>Aksi</th>
+        <th>Gambar</th>
+        <th>Nama</th>
+        <th>NIM</th>
+        <th>Email</th>
+        <th>Jurusan</th>
+    </tr>
+    <?php $i = 1; ?>
+    <?php  foreach($mahasiswa as $row) : ?>
+
+    <tr>
+        <td><?= $i; ?></td>
+        <td>
+            <a href="">Edit</a> | 
+            <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Are You Sure!');" >Delete</a>
+        </td>
+        <td><img src="img/<?= $row["gambar"]; ?>" width="60"></td>
+        <td><?= $row["nama"]?></td>
+        <td><?= $row["nim"]?></td>
+        <td><?= $row["email"]?></td>
+        <td><?= $row["jurusan"]?></td>  
+      </tr>
+      <?php $i++; ?>
+        <?php endforeach; ?>
+    </table>
+</body>
+</html>
+------------------------------------------------------------------------------------------------------
+"function.php"
+<?php 
+// Koneksi Ke Database MYSQL
+$conn = mysqli_connect("localhost", "root", "", "phpdasar");
+
+function query($query) {
+    global $conn;
+    $result = mysqli_query($conn, $query);
+    $rows = [];
+    while( $row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+    return $rows;
+} 
+
+function tambah($data) {
+    global $conn;
+
+    $nama = htmlspecialchars($data["nama"]);
+    $nim = htmlspecialchars($data["nim"]);
+    $jurusan = htmlspecialchars($data["jurusan"]);
+    $email = htmlspecialchars($data["email"]);
+    $gambar = htmlspecialchars($data["gambar"]);
+
+    $query = "INSERT INTO mahasiswa VALUES
+            ('','$nama', '$nim', '$jurusan', '$email', '$gambar')
+            ";
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function hapus($id) {
+    global $conn;
+    mysqli_query($conn, "DELETE FROM mahasiswa WHERE id = $id");
+    return mysqli_affected_rows($conn);
+}
+?>
+--------------------------------------------------------------------------------
+"hapus.php"
+<?php
+require 'function.php';
+
+$id = $_GET["id"];
+
+if (hapus($id) > 0) {
+    echo "
+    <script>
+    alert('Delete Successfully');
+    document.location.href = 'index.php';
+    </script>
+";
+
+}
+else {
+    echo "
+    <script>
+    alert('Delete Failed');
+    document.location.href = 'index.php';
+    </script>
+    ";
+}
+?>
+-------------------------------------------------------------------------------------
+____________________________________________________________________________________________
+
+UPDATE
+----------------------------------------------------------------------------
+
+"edit.php"
+<?php
+require 'function.php';
+
+// Ambil Data id di URL
+$id = $_GET["id"];
+
+// query data mahasiswa berdasarkan id
+$mhs = query("SELECT * FROM mahasiswa WHERE id = $id") [0];
+// var_dump($mhs["jurusan"]);
+
+// Cek apakah tombol sumbit sudah di tekan atau belum
+if (isset ($_POST["submit"])) {
+    
+    // Cek apakah data berhasil di edit atau tidak
+    if(edit($_POST) > 0 ) {
+        echo "
+        <script>
+        alert('Edit Successfully');
+        document.location.href = 'index.php';
+        </script>
+        ";
+    }
+    else  {
+        echo "
+        <script>
+        alert('Edit Failed');
+        document.location.href = 'index.php';
+        </script>
+        ";
+        echo mysqli_error($conn);
+    } 
+
+   
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Edit Data</h1>
+
+    <form action="" method="post">
+        <input type="hidden" name="id" value="<?= $mhs["id"]; ?>" >
+        <ul>
+            <li>
+                <label for="nama">Nama : </label>
+                <input type="text" name="nama" id="nama" required value="<?= $mhs["nama"] ?>">
+            </li>
+            <li>
+                <label for="nim">NIM : </label>
+                <input type="number" name="nim" id="nim" required value="<?= $mhs["nim"] ?>">
+            </li>
+            <li>
+                <label for="jurusan">Jurusan : </label>
+                <input type="text" name="jurusan" id="jurusan" required value="<?= $mhs["jurusan"]?>">
+            </li>
+            <li>
+                <label for="email">Email : </label>
+                <input type="text" name="email" id="email" required value="<?= $mhs["email"]?>">
+            </li>
+            <li>
+                <label for="gambar">Gambar : </label>
+                <input type="text" name="gambar" id="gambar" required value="<?= $mhs["gambar"] ?>" >
+            </li>
+            <li>
+                <button type="submit" name="submit">Edit Data</button>
+            </li>
+        </ul>
+    </form>
+    <a href="index.php">Kembali</a>
+    
+    
+</body>
+</html>
+----------------------------------------------------------------------------------------------------
+
+"index.php"
+<?php
+// keyword require / include
+require 'function.php';
+$mahasiswa = query("SELECT * FROM mahasiswa");
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+</head>
+<body>
+    <h1>List Mahasiswa</h1>
+
+    <a href="add.php">Add Data</a>
+    <br><br>
+
+    <table border="1" cellpadding="10" cellspacing="0" >
+
+    <tr>
+        <th>No.</th>
+        <th>Aksi</th>
+        <th>Gambar</th>
+        <th>Nama</th>
+        <th>NIM</th>
+        <th>Email</th>
+        <th>Jurusan</th>
+    </tr>
+    <?php $i = 1; ?>
+    <?php  foreach($mahasiswa as $row) : ?>
+
+    <tr>
+        <td><?= $i; ?></td>
+        <td>
+            <a href="edit.php?id=<?= $row["id"]; ?>">Edit</a> | 
+            <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Are You Sure!');" >Delete</a>
+        </td>
+        <td><img src="img/<?= $row["gambar"]; ?>" width="60"></td>
+        <td><?= $row["nama"]?></td>
+        <td><?= $row["nim"]?></td>
+        <td><?= $row["email"]?></td>
+        <td><?= $row["jurusan"]?></td>  
+      </tr>
+      <?php $i++; ?>
+        <?php endforeach; ?>
+    </table>
+</body>
+</html>
+----------------------------------------------------------------------------------------------
+
+"function.php"
+<?php 
+// Koneksi Ke Database MYSQL
+$conn = mysqli_connect("localhost", "root", "", "phpdasar");
+
+function query($query) {
+    global $conn;
+    $result = mysqli_query($conn, $query);
+    $rows = [];
+    while( $row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+    return $rows;
+} 
+
+function tambah($data) {
+    global $conn;
+
+    $nama = htmlspecialchars($data["nama"]);
+    $nim = htmlspecialchars($data["nim"]);
+    $jurusan = htmlspecialchars($data["jurusan"]);
+    $email = htmlspecialchars($data["email"]);
+    $gambar = htmlspecialchars($data["gambar"]);
+
+    $query = "INSERT INTO mahasiswa VALUES
+            ('','$nama', '$nim', '$jurusan', '$email', '$gambar')
+            ";
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function hapus($id) {
+    global $conn;
+    mysqli_query($conn, "DELETE FROM mahasiswa WHERE id = $id");
+    return mysqli_affected_rows($conn);
+}
+
+function edit($data) {
+    global $conn;
+
+    $id = $data["id"];
+    $nama = htmlspecialchars($data["nama"]);
+    $nim = htmlspecialchars($data["nim"]);
+    $jurusan = htmlspecialchars($data["jurusan"]);
+    $email = htmlspecialchars($data["email"]);
+    $gambar = htmlspecialchars($data["gambar"]);
+
+    $query = "UPDATE mahasiswa SET
+            nama = '$nama',
+            nim  = '$nim',
+            jurusan ='$jurusan',
+            email ='$email',
+            gambar = '$gambar'
+            WHERE id = $id
+            ";
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+?>
+--------------------------------------------------------------------------------
+_____________________________________________________________________________________
+
+Searching
+--------------------------------------------------------------------------------------------
+"index.php"
+
+<?php
+// keyword require / include
+require 'function.php'; // untuk menghubungkan
+// ASC = ascending (membesar / dari kecil ke terbesar)
+//  DESC = descending (mengecil / dari besar ke kecil)
+//  ORDER BY = untuk mengurutkan data berdasarkan kolom tertentu
+// $result=query("SELECT * FROM barang ORDER BY nama_barang");
+// $mahasiswa = query("SELECT * FROM mahasiswa ORDER BY id DESC"); 
+// $conn = mysqli_connect("localhost", "root",""); // menyambungkan dengan database mysql
+// mysqli_select_db($conn, "database1"); // memilih database yang akan digunakan
+$mahasiswa = query("SELECT * FROM mahasiswa"); 
+
+// Tombol cari ditekan
+if(isset($_POST["cari"])) {
+    $mahasiswa = cari($_POST["keyword"]);
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+</head>
+<body>
+    <h1>List Mahasiswa</h1>
+
+    <a href="add.php">Add Data</a>
+    <br><br>
+
+    <form action="" method="post">
+
+        <input type="text" name="keyword" placeholder="Search Data" size="40" autofocus autocomplete="off">
+        <button type="submit" name="cari">Search</button>
+    </form>
+    <br><br>
+
+    <table border="1" cellpadding="10" cellspacing="0" >
+
+    <tr>
+        <th>No.</th>
+        <th>Aksi</th>
+        <th>Gambar</th>
+        <th>Nama</th>
+        <th>NIM</th>
+        <th>Email</th>
+        <th>Jurusan</th>
+    </tr>
+    <?php $i = 1; ?>
+    <?php  foreach($mahasiswa as $row) : ?>
+
+    <tr>
+        <td><?= $i; ?></td>
+        <td>
+            <a href="edit.php?id=<?= $row["id"]; ?>">Edit</a> | 
+            <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Are You Sure!');" >Delete</a>
+        </td>
+        <td><img src="img/<?= $row["gambar"]; ?>" width="60"></td>
+        <td><?= $row["nama"]?></td>
+        <td><?= $row["nim"]?></td>
+        <td><?= $row["email"]?></td>
+        <td><?= $row["jurusan"]?></td>  
+      </tr>
+      <?php $i++; ?>
+        <?php endforeach; ?>
+    </table>
+</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+"function.php"
+<?php 
+// Koneksi Ke Database MYSQL
+$conn = mysqli_connect("localhost", "root", "", "phpdasar");
+
+function query($query) {
+    global $conn;
+    $result = mysqli_query($conn, $query);
+    $rows = [];
+    while( $row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+    return $rows;
+} 
+
+function tambah($data) {
+    global $conn;
+
+    $nama = htmlspecialchars($data["nama"]);
+    $nim = htmlspecialchars($data["nim"]);
+    $jurusan = htmlspecialchars($data["jurusan"]);
+    $email = htmlspecialchars($data["email"]);
+    $gambar = htmlspecialchars($data["gambar"]);
+
+    $query = "INSERT INTO mahasiswa VALUES
+            ('','$nama', '$nim', '$jurusan', '$email', '$gambar')
+            ";
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function hapus($id) {
+    global $conn;
+    mysqli_query($conn, "DELETE FROM mahasiswa WHERE id = $id");
+    return mysqli_affected_rows($conn);
+}
+
+function edit($data) {
+    global $conn;
+
+    $id = $data["id"];
+    $nama = htmlspecialchars($data["nama"]);
+    $nim = htmlspecialchars($data["nim"]);
+    $jurusan = htmlspecialchars($data["jurusan"]);
+    $email = htmlspecialchars($data["email"]);
+    $gambar = htmlspecialchars($data["gambar"]);
+
+    $query = "UPDATE mahasiswa SET
+            nama = '$nama',
+            nim  = '$nim',
+            jurusan ='$jurusan',
+            email ='$email',
+            gambar = '$gambar'
+            WHERE id = $id
+            ";
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function cari($keyword) {
+    $query = "SELECT * FROM mahasiswa WHERE
+            nama LIKE '%$keyword%' OR
+            nim LIKE '%$keyword%' OR
+            email LIKE '%$keyword%' OR
+            jurusan LIKE '%$keyword%'
+            ";
+    return query($query);
+}
+
+?>
+-------------------------------------------------------------------------------------
+_____________________________________________________________________________________________
+
+UPLOAD (File Handling)
+
+- <input type="file" >
+- enctype (end coding type)
+- $_FILES  (variabel super global)
+- move_uploaded_file
+- tipe data blob(binary large objek) (di mysql)
+
+- fungsi explode adalah fungsi untuk memecah sebuah string menjadi array, yang menggunakan delimiter
+
+----------------------------------------------------------------------------------------
+"add.php"
+<?php
+require 'function.php';
+// Cek apakah tombol sumbit sudah di tekan atau belum
+if (isset ($_POST["submit"])) {
+
+    // var_dump($_POST); die;
+    // var_dump($_FILES); die;
+    
+    // Cek apakah data berhasil di tambahkan atau tidak
+    if(tambah($_POST) > 0 ) {
+        echo "
+        <script>
+        alert('Add Successfully');
+        document.location.href = 'index.php';
+        </script>
+        ";
+    }
+    else  {
+        echo "
+        <script>
+        alert('Add Failed');
+        document.location.href = 'add.php';
+        </script>
+        ";
+        echo mysqli_error($conn);
+    }
+
+   
+
+   
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add Data</h1>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        <ul>
+            <li>
+                <label for="nama">Nama : </label>
+                <input type="text" name="nama" id="nama" required>
+            </li>
+            <li>
+                <label for="nim">NIM : </label>
+                <input type="number" name="nim" id="nim" required>
+            </li>
+            <li>
+                <label for="jurusan">Jurusan : </label>
+                <input type="text" name="jurusan" id="jurusan" required>
+            </li>
+            <li>
+                <label for="email">Email : </label>
+                <input type="text" name="email" id="email" required>
+            </li>
+            <li>
+                <label for="gambar">Gambar : </label>
+                <input type="file" name="gambar" id="gambar" >
+            </li>
+            <li>
+                <button type="submit" name="submit">Add Data</button>
+            </li>
+        </ul>
+    </form>
+    <a href="index.php">Kembali</a>
+    
+    <!-- <div style=position:absolute; top:0; bottom:0; left:0; right:0; background-color:black; font-size:100px; color;red; text-align:center;>
+    HAHAHAHA ANDA TELAH DI HACK!!!!!!
+    </div> -->
+</body>
+</html>
+-----------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+"function.php"
+<?php 
+// Koneksi Ke Database MYSQL
+$conn = mysqli_connect("localhost", "root", "", "phpdasar");
+
+function query($query) {
+    global $conn;
+    $result = mysqli_query($conn, $query);
+    $rows = [];
+    while( $row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+    return $rows;
+} 
+
+function tambah($data) {
+    global $conn;
+
+    $nama = htmlspecialchars($data["nama"]);
+    $nim = htmlspecialchars($data["nim"]);
+    $jurusan = htmlspecialchars($data["jurusan"]);
+    $email = htmlspecialchars($data["email"]);
+    
+    // Upload Gambar
+    $gambar = upload();
+    if(!$gambar) {
+        return false;
+    }
+
+    $query = "INSERT INTO mahasiswa VALUES
+            ('','$nama', '$nim', '$jurusan', '$email', '$gambar')
+            ";
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function upload() {
+    $namaFile = $_FILES['gambar']['name'];
+    $ukuranFile = $_FILES['gambar']['size'];
+    $error = $_FILES['gambar']['error'];
+    $tmpName = $_FILES['gambar']['tmp_name'];
+
+    // cek apakah tidak ada gambar yang di upload
+    if($error === 4) {
+        echo "<script>
+            alert('Choose File');
+            </script>";
+        return false;
+    }
+
+    // cek apakah yang di upload adalah gambar
+    $ektensiGambarValid = ['jpg', 'jpeg', 'png'];
+    $ektensiGambar = explode('.', $namaFile);
+    $ekstensiGambar = strtolower(end($ektensiGambar));
+    if(!in_array($ekstensiGambar, $ektensiGambarValid)) {
+        echo "<script>
+            alert('Wrong Choose File');
+            </script>";
+        return false;
+    }
+
+    // cek ukuran foto jika terlalu besar
+    if ($ukuranFile > 1000000) {
+        echo "<script>
+            alert('Error Big Size Foto');
+            </script>";
+        return false;
+    }
+
+    // lolos pengecekan, gambar siap di upload
+    // generate nama gambar baru
+    $namaFileBaru = uniqid();
+    $namaFileBaru .= '.';
+    $namaFileBaru .= $ekstensiGambar;
+    // var_dump($namaFileBaru);
+    // die;
+    move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
+    return $namaFileBaru;
+}
+
+function hapus($id) {
+    global $conn;
+    mysqli_query($conn, "DELETE FROM mahasiswa WHERE id = $id");
+    return mysqli_affected_rows($conn);
+}
+
+function edit($data) {
+    global $conn;
+
+    $id = $data["id"];
+    $nama = htmlspecialchars($data["nama"]);
+    $nim = htmlspecialchars($data["nim"]);
+    $jurusan = htmlspecialchars($data["jurusan"]);
+    $email = htmlspecialchars($data["email"]);
+    
+    $gambarLama = htmlspecialchars($data["gambarLama"]);
+
+    // cek apakah user pilih gambar baru atau tidak
+    if ($_FILES['gambar']['error'] === 4) {
+        $gambar = $gambarLama;
+    } else {
+        $gambar = upload();
+
+    }
+    
+    $query = "UPDATE mahasiswa SET
+            nama = '$nama',
+            nim  = '$nim',
+            jurusan ='$jurusan',
+            email ='$email',
+            gambar = '$gambar'
+            WHERE id = $id
+            ";
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function cari($keyword) {
+    $query = "SELECT * FROM mahasiswa WHERE
+            nama LIKE '%$keyword%' OR
+            nim LIKE '%$keyword%' OR
+            email LIKE '%$keyword%' OR
+            jurusan LIKE '%$keyword%'
+            ";
+    return query($query);
+}
+
+?>
+-----------------------------------------------------------------------------------------
+"edit.php"
+<?php
+require 'function.php';
+
+// Ambil Data id di URL
+$id = $_GET["id"];
+
+// query data mahasiswa berdasarkan id
+$mhs = query("SELECT * FROM mahasiswa WHERE id = $id") [0];
+// var_dump($mhs["jurusan"]);
+
+// Cek apakah tombol sumbit sudah di tekan atau belum
+if (isset ($_POST["submit"])) {
+    
+    // Cek apakah data berhasil di edit atau tidak
+    if(edit($_POST) > 0 ) {
+        echo "
+        <script>
+        alert('Edit Successfully');
+        document.location.href = 'index.php';
+        </script>
+        ";
+    }
+    else  {
+        echo "
+        <script>
+        alert('Edit Failed');
+        document.location.href = 'index.php';
+        </script>
+        ";
+        echo mysqli_error($conn);
+    } 
+
+   
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Edit Data</h1>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<?= $mhs["id"]; ?>" >
+        <input type="hidden" name="gambarLama" value="<?= $mhs["gambar"]; ?>" >
+        <ul>
+            <li>
+                <label for="nama">Nama : </label>
+                <input type="text" name="nama" id="nama" required value="<?= $mhs["nama"] ?>">
+            </li>
+            <li>
+                <label for="nim">NIM : </label>
+                <input type="number" name="nim" id="nim" required value="<?= $mhs["nim"] ?>">
+            </li>
+            <li>
+                <label for="jurusan">Jurusan : </label>
+                <input type="text" name="jurusan" id="jurusan" required value="<?= $mhs["jurusan"]?>">
+            </li>
+            <li>
+                <label for="email">Email : </label>
+                <input type="text" name="email" id="email" required value="<?= $mhs["email"]?>">
+            </li>
+            <li>
+                <label for="gambar">Gambar : </label><br>
+                <img src="img/<?= $mhs['gambar']; ?>" width="50" > <br>
+                <input type="file" name="gambar" id="gambar">
+            </li>
+            <li>
+                <button type="submit" name="submit">Edit Data</button>
+            </li>
+        </ul>
+    </form>
+    <a href="index.php">Kembali</a>
+    
+    
+</body>
+</html>
+------------------------------------------------------------------------------------------------------
+____________________________________________________________________________________________________________
+
+Registrasi
+
+- Login System
+- Registasi
+- Session
+- Cookie
+
+Registrasi
+- tabel 'user'
+- enkripsi password 
+
+---------------------------------------------------------------------------------------
+"registrasi.php"
+<?php
+require 'function.php';
+
+if (isset($_POST["register"])) {
+
+    if(registrasi($_POST) > 0) {
+        echo "<script>
+            alert('Add User Succesfully');
+            </script>
+        ";
+    }
+    else {
+        echo mysqli_error($conn);
+    }
+}
+
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrasi</title>
+    <style>
+        label {
+            display:block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Registrasi</h1>
+
+    <form action="" method="post">
+
+    <ul>
+        <li>
+            <label for="username">Username : </label>
+            <input type="text" name="username" id="username" required>
+        </li>
+        <li>
+            <lable for="password">Password : </lable><br>
+            <input type="password" name="password" id="password" required> 
+        </li>
+        <li>
+            <label for="password2">Confirm Password : </label>
+            <input type="password" name="password2" id="password2" required>
+        </li>
+        
+        <li>
+            <button type="submit" name="register">Register</button>
+        </li>
+    </ul>
+    </form>
+</body>
+</html>
+-----------------------------------------------------------------------------------------------
+"function.php"
+<?php 
+// Koneksi Ke Database MYSQL
+$conn = mysqli_connect("localhost", "root", "", "phpdasar");
+
+function query($query) {
+    global $conn;
+    $result = mysqli_query($conn, $query);
+    $rows = [];
+    while( $row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+    return $rows;
+} 
+
+function tambah($data) {
+    global $conn;
+
+    $nama = htmlspecialchars($data["nama"]);
+    $nim = htmlspecialchars($data["nim"]);
+    $jurusan = htmlspecialchars($data["jurusan"]);
+    $email = htmlspecialchars($data["email"]);
+    
+    // Upload Gambar
+    $gambar = upload();
+    if(!$gambar) {
+        return false;
+    }
+
+    $query = "INSERT INTO mahasiswa VALUES
+            ('','$nama', '$nim', '$jurusan', '$email', '$gambar')
+            ";
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function upload() {
+    $namaFile = $_FILES['gambar']['name'];
+    $ukuranFile = $_FILES['gambar']['size'];
+    $error = $_FILES['gambar']['error'];
+    $tmpName = $_FILES['gambar']['tmp_name'];
+
+    // cek apakah tidak ada gambar yang di upload
+    if($error === 4) {
+        echo "<script>
+            alert('Choose File');
+            </script>";
+        return false;
+    }
+
+    // cek apakah yang di upload adalah gambar
+    $ektensiGambarValid = ['jpg', 'jpeg', 'png'];
+    $ektensiGambar = explode('.', $namaFile);
+    $ekstensiGambar = strtolower(end($ektensiGambar));
+    if(!in_array($ekstensiGambar, $ektensiGambarValid)) {
+        echo "<script>
+            alert('Wrong Choose File');
+            </script>";
+        return false;
+    }
+
+    // cek ukuran foto jika terlalu besar
+    if ($ukuranFile > 1000000) {
+        echo "<script>
+            alert('Error Big Size Foto');
+            </script>";
+        return false;
+    }
+
+    // lolos pengecekan, gambar siap di upload
+    // generate nama gambar baru
+    $namaFileBaru = uniqid();
+    $namaFileBaru .= '.';
+    $namaFileBaru .= $ekstensiGambar;
+    // var_dump($namaFileBaru);
+    // die;
+    move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
+    return $namaFileBaru;
+}
+
+function hapus($id) {
+    global $conn;
+    mysqli_query($conn, "DELETE FROM mahasiswa WHERE id = $id");
+    return mysqli_affected_rows($conn);
+}
+
+function edit($data) {
+    global $conn;
+
+    $id = $data["id"];
+    $nama = htmlspecialchars($data["nama"]);
+    $nim = htmlspecialchars($data["nim"]);
+    $jurusan = htmlspecialchars($data["jurusan"]);
+    $email = htmlspecialchars($data["email"]);
+    
+    $gambarLama = htmlspecialchars($data["gambarLama"]);
+
+    // cek apakah user pilih gambar baru atau tidak
+    if ($_FILES['gambar']['error'] === 4) {
+        $gambar = $gambarLama;
+    } else {
+        $gambar = upload();
+
+    }
+    
+    $query = "UPDATE mahasiswa SET
+            nama = '$nama',
+            nim  = '$nim',
+            jurusan ='$jurusan',
+            email ='$email',
+            gambar = '$gambar'
+            WHERE id = $id
+            ";
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function cari($keyword) {
+    $query = "SELECT * FROM mahasiswa WHERE
+            nama LIKE '%$keyword%' OR
+            nim LIKE '%$keyword%' OR
+            email LIKE '%$keyword%' OR
+            jurusan LIKE '%$keyword%'
+            ";
+    return query($query);
+}
+
+function registrasi($data) {
+    global $conn;
+
+    $username = strtolower(stripslashes($data["username"]));
+    $password = mysqli_real_escape_string($conn, $data["password"]);
+    $password2 = mysqli_real_escape_string($conn, $data["password2"]);
+
+    // cek username sudah ada atau belum
+    $result = mysqli_query($conn, "SELECT username FROM user WHERE username = '$username'");
+
+    if (mysqli_fetch_assoc($result)) {
+        echo "<script>
+            alert('Username Available')
+            </script>";
+        return false;
+    }
+
+    // cek konfirmasi password
+    if($password !== $password2) {
+        echo "<script>
+        alert('Wrong Password');
+        </script>
+        ";
+        return false;
+    }
+    // return 1;
+
+    // Enkripsi Password
+    // cara lama
+    // $password = md5($password);
+    $password = password_hash($password, PASSWORD_DEFAULT);
+    // var_dump($password);
+    // die;
+
+    // tambahkan user baru ke database
+    mysqli_query($conn, "INSERT INTO user VALUES('', '$username', '$password')");
+
+    return mysqli_affected_rows($conn);
+}
+
+?>
+----------------------------------------------------------------------------------------------------
+_______________________________________________________________________________________________________________
+
+Login
+---------------------------------------------
+"login.php"
+<?php
+require 'function.php';
+
+if (isset($_POST["login"])) {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    $result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
+
+    // cek username
+    if (mysqli_num_rows($result) === 1) {
+
+        // cek password
+        $row = mysqli_fetch_assoc($result);
+        if (password_verify($password, $row["password"])) {
+            header("Location: index.php");
+            exit;
+        }
+    }
+
+    $error = true;
+}
+
+
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+
+    <?php if(isset($error)) : ?>
+        <p style="color: red; font-style: italic;">Username / Password Salah</p>
+        <?php endif; ?>
+
+    <form method="post" action="">
+
+        <ul>
+            <li>
+                <label for="username">Username : </label>
+                <input type="text" id="username" name="username">
+            </li>
+            <li>
+                <label for="password">Password : </label>
+                <input type="password" id="password" name="password">
+            </li>
+            <li>
+                <button type="submit" name="login">Login</button>
+            </li>
+        </ul>
+
+    </form>
+</body>
+</html>
+--------------------------------------------------------------------------------------------------
+__________________________________________________________________________________________________________
+
+SESSION
+adalah mekanisme penyimpanan informasi ke dalam variabel agar bisa digunakan di lebih dari satu halaman informasi disimpan di server.
+keyword
+- $_SESSION
+- session_start()
+----------------------------------------------------------
+"login.php"
+<?php
+session_start();
+
+if(isset($_SESSION["login"])) {
+    header("Location: index.php");
+    exit;
+}
+
+require 'function.php';
+
+if (isset($_POST["login"])) {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    $result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
+
+    // cek username
+    if (mysqli_num_rows($result) === 1) {
+
+        // cek password
+        $row = mysqli_fetch_assoc($result);
+        if (password_verify($password, $row["password"])) {
+            
+            // set session
+            $_SESSION["login"] = true;
+
+            header("Location: index.php");            
+            exit;
+        }
+    }
+
+    $error = true;
+}
+
+
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+
+    <?php if(isset($error)) : ?>
+        <p style="color: red; font-style: italic;">Username / Password Salah</p>
+        <?php endif; ?>
+
+    <form method="post" action="">
+
+        <ul>
+            <li>
+                <label for="username">Username : </label>
+                <input type="text" id="username" name="username">
+            </li>
+            <li>
+                <label for="password">Password : </label>
+                <input type="password" id="password" name="password">
+            </li>
+            <li>
+                <button type="submit" name="login">Login</button>
+            </li>
+        </ul>
+
+    </form>
+</body>
+</html>
+--------------------------------------------------------------------------------------------
+"logout.php"
+<?php
+session_start();
+$_SESSION = [];
+session_unset();
+session_destroy();
+
+header("Location: login.php");
+exit;
+
+?>
+-------------------------------------------------------------------------------------------------------
+"index.php"
+<?php
+session_start();
+
+if (!isset($_SESSION["login"])) {
+    header("Location: login.php");
+    exit;
+}
+
+// keyword require / include
+require 'function.php'; // untuk menghubungkan
+// ASC = ascending (membesar / dari kecil ke terbesar)
+//  DESC = descending (mengecil / dari besar ke kecil)
+//  ORDER BY = untuk mengurutkan data berdasarkan kolom tertentu
+// $result=query("SELECT * FROM barang ORDER BY nama_barang");
+// $mahasiswa = query("SELECT * FROM mahasiswa ORDER BY id DESC"); 
+// $conn = mysqli_connect("localhost", "root",""); // menyambungkan dengan database mysql
+// mysqli_select_db($conn, "database1"); // memilih database yang akan digunakan
+$mahasiswa = query("SELECT * FROM mahasiswa"); 
+
+// Tombol cari ditekan
+if(isset($_POST["cari"])) {
+    $mahasiswa = cari($_POST["keyword"]);
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+</head>
+<body>
+
+<a href="logout.php">Logout</a>
+    <h1>List Mahasiswa</h1>
+
+    <a href="add.php">Add Data</a>
+    <br><br>
+
+    <form action="" method="post">
+
+        <input type="text" name="keyword" placeholder="Search Data" size="40" autofocus autocomplete="off">
+        <button type="submit" name="cari">Search</button>
+    </form>
+    <br><br>
+
+    <table border="1" cellpadding="10" cellspacing="0" >
+
+    <tr>
+        <th>No.</th>
+        <th>Aksi</th>
+        <th>Gambar</th>
+        <th>Nama</th>
+        <th>NIM</th>
+        <th>Email</th>
+        <th>Jurusan</th>
+    </tr>
+    <?php $i = 1; ?>
+    <?php  foreach($mahasiswa as $row) : ?>
+
+    <tr>
+        <td><?= $i; ?></td>
+        <td>
+            <a href="edit.php?id=<?= $row["id"]; ?>">Edit</a> | 
+            <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Are You Sure!');" >Delete</a>
+        </td>
+        <td><img src="img/<?= $row["gambar"]; ?>" width="60"></td>
+        <td><?= $row["nama"]?></td>
+        <td><?= $row["nim"]?></td>
+        <td><?= $row["email"]?></td>
+        <td><?= $row["jurusan"]?></td>  
+      </tr>
+      <?php $i++; ?>
+        <?php endforeach; ?>
+    </table>
+</body>
+</html>
+-----------------------------------------------------------------------------------------------------
+_______________________________________________________________________________________________________________
+
+COOKIE
+adalah mekanisme penyimpanan informasi ke dalam variabel agar bisa digunakan di lebih dari satu halaman informasi disimpan di browser/client.
+digunakan untuk
+- mengenali user
+- shopping cart
+- personalisasi
+
+keyword
+- $_COOKIE
+- setcookie()
+
+---------------------------------------------------------------------------------------------------------------------------
+"login.php"
+<?php
+session_start();
+require 'function.php';
+
+// cek cookie
+if (isset($_COOKIE['id']) && isset($_COOKIE['key']) ) {
+    $id = $_COOKIE['id'];
+    $key = $_COOKIE['key'];
+
+    // ambil username berdasarkan id
+    $result = mysqli_query($conn, "SELECT username FROM user WHERE id = $id");
+    $row = mysqli_fetch_assoc($result);
+
+    // cek cookie dan username
+    if ($key === hash('sha256', $row['username'])) {
+        $_SESSION['login'] = true;
+    }
+}
+
+if(isset($_SESSION["login"])) {
+    header("Location: index.php");
+    exit;
+}
+
+
+
+if (isset($_POST["login"])) {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    $result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
+
+    // cek username
+    if (mysqli_num_rows($result) === 1) {
+
+        // cek password
+        $row = mysqli_fetch_assoc($result);
+        if (password_verify($password, $row["password"])) {
+            
+            // set session
+            $_SESSION["login"] = true;
+
+            // cek remember me (Cookie)
+            if(isset($_POST['remember'])) {
+                // buat cookie
+                setcookie('id', $row['id'], time() + 60);
+                setcookie('key', hash('sha256', $row['username']), time() + 60);
+                // setcookie('login', 'true', time() + 60);
+            }
+
+            header("Location: index.php");            
+            exit;
+        }
+    }
+
+    $error = true;
+}
+
+
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+
+    <?php if(isset($error)) : ?>
+        <p style="color: red; font-style: italic;">Username / Password Salah</p>
+        <?php endif; ?>
+
+    <form method="post" action="">
+
+        <ul>
+            <li>
+                <label for="username">Username : </label>
+                <input type="text" id="username" name="username">
+            </li>
+            <li>
+                <label for="password">Password : </label>
+                <input type="password" id="password" name="password">
+            </li>
+            <li>                
+                <input type="checkbox" name="remember" id="remember">
+                <label for="remember">Remember Me </label>
+            </li>
+            <li>
+                <button type="submit" name="login">Login</button>
+            </li>
+        </ul>
+
+    </form>
+</body>
+</html>
+------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+"logout.php"
+<?php
+// hapus session
+session_start();
+$_SESSION = [];
+session_unset();
+session_destroy();
+
+// hapus cookie
+setcookie('id', '', time() - 3600);
+setcookie('key', '', time() - 3600);
+
+header("Location: login.php");
+exit;
+
+?>
+----------------------------------------------------------------------------------------------------------------
+_________________________________________________________________________________________________________________
+
+Pagination
+
+keyword 
+- LIMIT
+--------------------------------------------------------------------------------------------------------------------------
+"index.php"
+<?php
+session_start();
+
+if (!isset($_SESSION["login"])) {
+    header("Location: login.php");
+    exit;
+}
+
+
+require 'function.php'; 
+
+// pagination
+// konfigurasi
+$jumlahDataPerHalaman = 2;
+$jumlahData = count(query("SELECT * FROM mahasiswa"));
+$jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
+$halamanAktif = (isset($_GET["halaman"])) ? $_GET["halaman"] : 1;
+$awalData = ($jumlahDataPerHalaman * $halamanAktif) - $jumlahDataPerHalaman;
+// $result = mysqli_query($conn, "SELECT * FROM mahasiswa");
+// $jumlahData = mysqli_num_rows($result);
+
+
+
+$mahasiswa = query("SELECT * FROM mahasiswa LIMIT $awalData, $jumlahDataPerHalaman"); 
+
+// Tombol cari ditekan
+if(isset($_POST["cari"])) {
+    $mahasiswa = cari($_POST["keyword"]);
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+</head>
+<body>
+
+<a href="logout.php">Logout</a>
+    <h1>List Mahasiswa</h1>
+
+    <a href="add.php">Add Data</a>
+    <br><br>
+
+    <form action="" method="post">
+
+        <input type="text" name="keyword" placeholder="Search Data" size="40" autofocus autocomplete="off">
+        <button type="submit" name="cari">Search</button>
+    </form>
+    <br><br>
+
+    <!-- Navigasi -->
+    <?php if($halamanAktif > 1) : ?>
+        <a href="?halaman=<?= $halamanAktif - 1 ?>">&laquo;</a>
+        <?php endif; ?>
+        
+
+    <?php for($i = 1; $i <= $jumlahHalaman; $i++) : ?>
+        <?php if($i == $halamanAktif) : ?>
+        <a href="?halaman=<?= $i; ?>" style="font-weight:bold; color: red;"><?= $i;?></a>
+        <?php else:  ?>
+            <a href="?halaman=<?= $i; ?>"><?= $i;?></a>
+            <?php endif; ?>
+    <?php endfor; ?>
+
+    <?php if($halamanAktif < $jumlahHalaman) : ?>
+        <a href="?halaman=<?= $halamanAktif + 1 ?>">&raquo;</a>
+        <?php endif; ?>
+    
+    <table border="1" cellpadding="10" cellspacing="0" >
+    
+    <tr>
+        <th>No.</th>
+        <th>Aksi</th>
+        <th>Gambar</th>
+        <th>Nama</th>
+        <th>NIM</th>
+        <th>Email</th>
+        <th>Jurusan</th>
+    </tr>
+    <?php $i = 1; ?>
+    <?php  foreach($mahasiswa as $row) : ?>
+
+    <tr>
+        <td><?= $i; ?></td>
+        <td>
+            <a href="edit.php?id=<?= $row["id"]; ?>">Edit</a> | 
+            <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Are You Sure!');" >Delete</a>
+        </td>
+        <td><img src="img/<?= $row["gambar"]; ?>" width="60"></td>
+        <td><?= $row["nama"]?></td>
+        <td><?= $row["nim"]?></td>
+        <td><?= $row["email"]?></td>
+        <td><?= $row["jurusan"]?></td>  
+      </tr>
+      <?php $i++; ?>
+        <?php endforeach; ?>
+    </table>
+</body>
+</html>
+---------------------------------------------------------------------------------------------------------------------
+______________________________________________________________________________________________________________________
+
+LIVE Search menggunakan AJAX
+
+AJAX (Asynchronous Javascript and XML
+
+- XMLHttpRequest()
+- Trigger adalah sebuah aksi yang dilakukan untuk menjalankan ajax
+
+-----------------------------------------------------------------------------
+"index.php"
+<?php
+session_start();
+
+if (!isset($_SESSION["login"])) {
+    header("Location: login.php");
+    exit;
+}
+
+// keyword require / include
+require 'function.php'; // untuk menghubungkan
+// ASC = ascending (membesar / dari kecil ke terbesar)
+//  DESC = descending (mengecil / dari besar ke kecil)
+//  ORDER BY = untuk mengurutkan data berdasarkan kolom tertentu
+// $result=query("SELECT * FROM barang ORDER BY nama_barang");
+// $mahasiswa = query("SELECT * FROM mahasiswa ORDER BY id DESC"); 
+// $conn = mysqli_connect("localhost", "root",""); // menyambungkan dengan database mysql
+// mysqli_select_db($conn, "database1"); // memilih database yang akan digunakan
+$mahasiswa = query("SELECT * FROM mahasiswa"); 
+
+// Tombol cari ditekan
+if(isset($_POST["cari"])) {
+    $mahasiswa = cari($_POST["keyword"]);
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+</head>
+<body>
+
+<a href="logout.php">Logout</a>
+    <h1>List Mahasiswa</h1>
+
+    <a href="add.php">Add Data</a>
+    <br><br>
+
+    <form action="" method="post">
+
+        <input type="text" name="keyword" placeholder="Search Data" size="40" autofocus autocomplete="off" id="keyword">
+        <button type="submit" name="cari" id="tombol-cari">Search</button>
+    </form>
+    <br><br>
+    
+    <div id="container">
+    <table border="1" cellpadding="10" cellspacing="0" >
+
+    <tr>
+        <th>No.</th>
+        <th>Aksi</th>
+        <th>Gambar</th>
+        <th>Nama</th>
+        <th>NIM</th>
+        <th>Email</th>
+        <th>Jurusan</th>
+    </tr>
+    <?php $i = 1; ?>
+    <?php  foreach($mahasiswa as $row) : ?>
+
+    <tr>
+        <td><?= $i; ?></td>
+        <td>
+            <a href="edit.php?id=<?= $row["id"]; ?>">Edit</a> | 
+            <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Are You Sure!');" >Delete</a>
+        </td>
+        <td><img src="img/<?= $row["gambar"]; ?>" width="60"></td>
+        <td><?= $row["nama"]?></td>
+        <td><?= $row["nim"]?></td>
+        <td><?= $row["email"]?></td>
+        <td><?= $row["jurusan"]?></td>  
+      </tr>
+      <?php $i++; ?>
+        <?php endforeach; ?>
+    </table>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
+---------------------------------------------------------------------------------------------------
+"script.js"
+// ambil element yang dibutuhkan
+var keyword = document.getElementById("keyword");
+var tombolCari = document.getElementById("tombol-cari");
+var container = document.getElementById("container");
+
+// tambahkan event ketika keyword ditulis
+keyword.addEventListener("keyup", function () {
+	// buat object ajax
+	var xhr = new XMLHttpRequest();
+
+	// cek kesiapan ajax
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			// console.log(xhr.responseText);
+			container.innerHTML = xhr.responseText;
+		}
+	};
+
+	// eksekusi ajax
+	xhr.open("GET", "ajax/mahasiswa.php?keyword=" + keyword.value, true);
+	xhr.send();
+});
+-------------------------------------------------------------------------------------------------------------------
+"mahasiswa.php"
+<?php
+require '../function.php';
+
+$keyword = $_GET["keyword"];
+
+$query = "SELECT * FROM mahasiswa WHERE
+            nama LIKE '%$keyword%' OR
+            nim LIKE '%$keyword%' OR
+            email LIKE '%$keyword%' OR
+            jurusan LIKE '%$keyword%'
+            ";
+$mahasiswa = query($query);
+
+?>
+<table border="1" cellpadding="10" cellspacing="0" >
+
+    <tr>
+        <th>No.</th>
+        <th>Aksi</th>
+        <th>Gambar</th>
+        <th>Nama</th>
+        <th>NIM</th>
+        <th>Email</th>
+        <th>Jurusan</th>
+    </tr>
+    <?php $i = 1; ?>
+    <?php  foreach($mahasiswa as $row) : ?>
+
+    <tr>
+        <td><?= $i; ?></td>
+        <td>
+            <a href="edit.php?id=<?= $row["id"]; ?>">Edit</a> | 
+            <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Are You Sure!');" >Delete</a>
+        </td>
+        <td><img src="img/<?= $row["gambar"]; ?>" width="60"></td>
+        <td><?= $row["nama"]?></td>
+        <td><?= $row["nim"]?></td>
+        <td><?= $row["email"]?></td>
+        <td><?= $row["jurusan"]?></td>  
+      </tr>
+      <?php $i++; ?>
+        <?php endforeach; ?>
+    </table>
+-----------------------------------------------------------------------------------------
+_________________________________________________________________________________________________________________________
+
+PDF Reporting
+
+keyword
+- FPDF
+- mPDF
+- DOMPDF
+-----------------------------------------------
+"index.php"
+<?php
+session_start();
+
+if (!isset($_SESSION["login"])) {
+    header("Location: login.php");
+    exit;
+}
+
+// keyword require / include
+require 'function.php'; // untuk menghubungkan
+// ASC = ascending (membesar / dari kecil ke terbesar)
+//  DESC = descending (mengecil / dari besar ke kecil)
+//  ORDER BY = untuk mengurutkan data berdasarkan kolom tertentu
+// $result=query("SELECT * FROM barang ORDER BY nama_barang");
+// $mahasiswa = query("SELECT * FROM mahasiswa ORDER BY id DESC"); 
+// $conn = mysqli_connect("localhost", "root",""); // menyambungkan dengan database mysql
+// mysqli_select_db($conn, "database1"); // memilih database yang akan digunakan
+$mahasiswa = query("SELECT * FROM mahasiswa"); 
+
+// Tombol cari ditekan
+if(isset($_POST["cari"])) {
+    $mahasiswa = cari($_POST["keyword"]);
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <style>
+        @media print {
+            .logout, .add, .form-cari, .aksi1, .aksi2 {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<a href="logout.php" class="logout">Logout</a>
+    <h1>List Mahasiswa</h1>
+
+    <a href="add.php" class="add">Add Data</a>
+    <br><br>
+
+    <form action="" method="post" class="form-cari">
+
+        <input type="text" name="keyword" placeholder="Search Data" size="40" autofocus autocomplete="off" id="keyword">
+        <button type="submit" name="cari" id="tombol-cari">Search</button>
+    </form>
+    <br><br>
+    
+    <div id="container">
+    <table border="1" cellpadding="10" cellspacing="0" >
+
+    <tr>
+        <th>No.</th>
+        <th class="aksi1">Aksi</th>
+        <th>Gambar</th>
+        <th>Nama</th>
+        <th>NIM</th>
+        <th>Email</th>
+        <th>Jurusan</th>
+    </tr>
+    <?php $i = 1; ?>
+    <?php  foreach($mahasiswa as $row) : ?>
+
+    <tr>
+        <td><?= $i; ?></td>
+        <td class="aksi2">
+            <a href="edit.php?id=<?= $row["id"]; ?>">Edit</a> | 
+            <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Are You Sure!');" >Delete</a>
+        </td>
+        <td><img src="img/<?= $row["gambar"]; ?>" width="60"></td>
+        <td><?= $row["nama"]?></td>
+        <td><?= $row["nim"]?></td>
+        <td><?= $row["email"]?></td>
+        <td><?= $row["jurusan"]?></td>  
+      </tr>
+      <?php $i++; ?>
+        <?php endforeach; ?>
+    </table>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
+---------------------------------------------------------------------------------------------------------
+_______________________________________________________________________________________________________________
+
+Web Hosting
+- Google sites
+- Github Pages
+- Firebase
+- 000webhost.com
+- infinityfree.net   Account Label : Website for phpnative.free.nf   Account Password : Cz7sG0kb1Hk
+
+CMS (Content Management System)
+- Wordpress.com
+- Blogger.com
+- Wix.com
+
+Nama Domain
+- freenom.com
+- dot.tk
+- name.com
+
+
